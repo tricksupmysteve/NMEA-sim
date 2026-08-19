@@ -1,0 +1,50 @@
+{
+  "name": "matey-nmea-simulator",
+  "version": "1.0.0",
+  "private": false,
+  "description": "Realistic marine instrument simulator that streams live NMEA 0183 sentences over raw TCP, for local Mac/LAN and Railway TCP Proxy deployment.",
+  "keywords": [
+    "nmea",
+    "nmea0183",
+    "marine",
+    "simulator",
+    "tcp",
+    "gps",
+    "wind",
+    "depth",
+    "matey"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "main": "dist/index.js",
+  "bin": {
+    "matey-nmea-simulator": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    ".env.example"
+  ],
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "dev:watch": "tsx watch src/index.ts",
+    "sim": "tsx src/index.ts",
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node dist/index.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node --import tsx --test --test-reporter=spec \"tests/**/*.test.ts\"",
+    "test:watch": "node --import tsx --test --watch --test-reporter=spec \"tests/**/*.test.ts\"",
+    "check": "npm run typecheck && npm test",
+    "docker:build": "docker build -t matey-nmea-simulator .",
+    "docker:run": "docker run --rm -p 39150:39150 -p 3000:3000 matey-nmea-simulator"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^22.13.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  }
+}
